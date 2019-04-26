@@ -11,6 +11,24 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+
+ */
+
+
+
+Route::get('/', function(){return redirect('/tasks');});
+Route::get('/tasks', 'TaskController@index');
+Route::post('/tasks', 'TaskController@store');
+Route::delete('/tasks/{id}', 'TaskController@destroy');
+
+
+
+use App\Http\Middleware\HelloMiddleWare;
+
+Route::get('/hello', 'HelloController@index')
+  ->middleware(HelloMiddleWare::class);;
+Route::post('/hello', 'HelloController@post');
