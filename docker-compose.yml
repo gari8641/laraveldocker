@@ -4,6 +4,11 @@ services:
   nginx:
     image: nginx
     container_name: "laravel-nginx"
+    # 日本時間
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: Asia/Tokyo
     ports:
       - "8080:80"
     volumes:
@@ -13,6 +18,11 @@ services:
   php:
     build: ./php
     container_name: "laravel-php"
+    # 日本時間
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: Asia/Tokyo
     tty: true
     volumes:
       - ./src:/var/www/html
@@ -20,6 +30,11 @@ services:
   mysql:
     image: mysql
     container_name: "laravel-mysql"
+    # 日本時間
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: Asia/Tokyo
     restart: always
     environment:
       MYSQL_DATABASE: root
