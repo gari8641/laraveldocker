@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateRoomTable extends Migration
      */
     public function up()
     {
-        Schema::create('room', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('country', 100);
-            $table->string('prefecture', 10);
-            $table->string('city', 10);
-            $table->string('facility', 255);
-            $table->double('lat', 8, 6);
-            $table->double('lng', 9, 6);
+            $table->tinyInteger('score_part');
+            $table->string('comment', 255);
+            $table->boolean('enable');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateRoomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room');
+        Schema::dropIfExists('reviews');
     }
 }
